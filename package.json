@@ -1,0 +1,55 @@
+{
+  "name": "cucumber6-usage-formatter",
+  "version": "1.0.0",
+  "description": "Custom usage formatter for cucumber-js v6",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "!*.test.js",
+    "!*.test.d.ts"
+  ],
+  "scripts": {
+    "install-peers": "npm install --no-save cucumber@6.0.5",
+    "build": "rimraf lib && npm run format && npm run lint && tsc",
+    "format": "prettier --write \"{src,test}/**/*.ts\" ",
+    "lint-fix": "npm run lint -- --fix",
+    "lint": "eslint . --ext .js,.ts --format visualstudio --no-color --max-warnings 10 --report-unused-disable-directives",
+    "package": "npm run build && rimraf package && rm -f cucumber6-usage-formatter*.tgz && npm pack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hdorgeval/cucumber6-usage-formatter.git"
+  },
+  "author": "Henri d'Orgeval",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hdorgeval/cucumber6-usage-formatter/issues"
+  },
+  "homepage": "https://github.com/hdorgeval/cucumber6-usage-formatter#readme",
+  "peerDependencies": {
+    "cucumber": ">= 6.0.0"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "devDependencies": {
+    "@types/cucumber": "6.0.1",
+    "@types/debug": "4.1.6",
+    "@types/node": "16.4.1",
+    "@typescript-eslint/eslint-plugin": "4.28.4",
+    "@typescript-eslint/parser": "4.28.4",
+    "eslint": "7.31.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.23.4",
+    "eslint-plugin-prettier": "3.4.0",
+    "prettier": "2.3.2",
+    "rimraf": "3.0.2",
+    "ts-node": "10.1.0",
+    "typescript": "4.3.5"
+  },
+  "dependencies": {
+    "cli-table3": "0.6.0"
+  }
+}
