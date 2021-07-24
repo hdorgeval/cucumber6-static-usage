@@ -1,5 +1,7 @@
 # cucumber6-static-usage
 
+[![npm version](https://img.shields.io/npm/v/cucumber6-static-usage.svg)](https://www.npmjs.com/package/cucumber6-static-usage)
+
 Static steps usage reporter for cucumber-js v6.
 
 This reporter is inspired by the built-in `usage` reporter without limiting the matches to the first five:
