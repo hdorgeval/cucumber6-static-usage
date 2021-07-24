@@ -1,0 +1,34 @@
+{
+  "step-definitions/maths/simple-maths-steps.ts:5": {
+    "code": "async function () {\\n    this.calculator = new simple_maths_calculator_1.SimpleMathsCalculator();\\n}",
+    "line": 5,
+    "pattern": "I have a simple maths calculator",
+    "patternType": "CucumberExpression",
+    "matches": [],
+    "uri": "step-definitions/maths/simple-maths-steps.ts"
+  },
+  "step-definitions/maths/simple-maths-steps.ts:9": {
+    "code": "async function (value) {\\n    this.calculator.startWith(value);\\n}",
+    "line": 9,
+    "pattern": "a variable is set to {int}",
+    "patternType": "CucumberExpression",
+    "matches": [],
+    "uri": "step-definitions/maths/simple-maths-steps.ts"
+  },
+  "step-definitions/maths/simple-maths-steps.ts:13": {
+    "code": "async function (value) {\\n    this.calculator.incrementBy(value);\\n}",
+    "line": 13,
+    "pattern": "I increment this variable by {int}",
+    "patternType": "CucumberExpression",
+    "matches": [],
+    "uri": "step-definitions/maths/simple-maths-steps.ts"
+  },
+  "step-definitions/maths/simple-maths-steps.ts:17": {
+    "code": "async function (value) {\\n    expect_1.default(this.calculator.result).toBe(value);\\n}",
+    "line": 17,
+    "pattern": "the variable should contain {int}",
+    "patternType": "CucumberExpression",
+    "matches": [],
+    "uri": "step-definitions/maths/simple-maths-steps.ts"
+  }
+}

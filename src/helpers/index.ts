@@ -1,7 +1,5 @@
 import {
-  Background,
   Duration,
-  FeatureChild,
   GherkinDocument,
   IGetUsageRequest,
   IUsage,
@@ -10,10 +8,8 @@ import {
   NANOSECONDS_PER_MILLISECOND,
   Pickle,
   PickleStep,
-  Scenario,
   Step,
   StepDefinition,
-  unexecutedStatuses,
 } from './types';
 import { doesHaveValue } from './value_checker';
 import path from 'path';
@@ -43,27 +39,29 @@ function buildEmptyMapping(stepDefinitions: StepDefinition[]): Record<string, IU
 
 function getPickleStepMap(pickle: Pickle): Record<string, PickleStep> {
   const result: Record<string, PickleStep> = {};
-  pickle.steps.forEach((pickleStep) => (result[pickleStep.id] = pickleStep));
+  pickle.steps.forEach((pickleStep) => {
+    pickleStep.id = pickleStep.id || pickleStep.locations[0].line.toString();
+    result[pickleStep.id] = pickleStep;
+  });
   return result;
-}
-
-function extractStepContainers(child: FeatureChild): Array<Scenario | Background> {
-  if (doesHaveValue(child.background)) {
-    return [child.background];
-  } else if (doesHaveValue(child.rule)) {
-    return child.rule.children.map((ruleChild) =>
-      doesHaveValue(ruleChild.background) ? ruleChild.background : ruleChild.scenario,
-    );
-  }
-  return [child.scenario];
 }
 
 function getGherkinStepMap(gherkinDocument: GherkinDocument): Record<string, Step> {
   const result: Record<string, Step> = {};
   gherkinDocument.feature.children
-    .map(extractStepContainers)
+    .filter(
+      (child) =>
+        child.type === 'Scenario' ||
+        child.type === 'ScenarioOutline' ||
+        child.type === 'Background',
+    )
+    .map((child) => child.steps)
     .flat()
-    .forEach((x) => x.steps.forEach((step: Step) => (result[step.id] = step)));
+    .forEach((step) => {
+      step.id = step.id || step.location.line.toString();
+      result[step.id] = step;
+    });
+
   return result;
 }
 
@@ -73,27 +71,24 @@ function buildMapping({
 }: IGetUsageRequest): Record<string, IUsage> {
   const mapping = buildEmptyMapping(stepDefinitions);
   eventDataCollector.getTestCaseAttempts().forEach((testCaseAttempt) => {
-    const pickleStepMap = getPickleStepMap(testCaseAttempt.pickle);
+    // const pickleStepMap = getPickleStepMap(testCaseAttempt.pickle);
     const gherkinStepMap = getGherkinStepMap(testCaseAttempt.gherkinDocument);
-    testCaseAttempt.testCase.testSteps.forEach((testStep) => {
-      if (doesHaveValue(testStep.pickleStepId) && testStep.stepDefinitionIds.length === 1) {
-        const stepDefinitionId = testStep.stepDefinitionIds[0];
-        const pickleStep = pickleStepMap[testStep.pickleStepId];
-        const gherkinStep = gherkinStepMap[pickleStep.astNodeIds[0]];
+    testCaseAttempt.testCase.steps
+      .filter((step) => step.actionLocation && step.sourceLocation)
+      .forEach((testStep) => {
+        const stepDefinitionId = `${testStep.actionLocation.uri}:${testStep.actionLocation.line}`;
+        // const pickleStep = pickleStepMap[stepDefinitionId];
+        const gherkinStep = gherkinStepMap[testStep.sourceLocation.line.toString()];
         const match: IUsageMatch = {
           line: gherkinStep.location.line,
-          text: pickleStep.text,
-          uri: testCaseAttempt.pickle.uri,
+          text: gherkinStep.text,
+          uri: testStep.sourceLocation.uri,
         };
-        const { duration, status } = testCaseAttempt.stepResults[testStep.id];
-        if (!unexecutedStatuses.includes(status) && doesHaveValue(duration)) {
-          match.duration = duration;
-        }
+
         if (doesHaveValue(mapping[stepDefinitionId])) {
           mapping[stepDefinitionId].matches.push(match);
         }
-      }
-    });
+      });
   });
   return mapping;
 }

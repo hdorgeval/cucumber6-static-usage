@@ -17,9 +17,9 @@ export interface Feature {
   children: FeatureChild[];
 }
 export interface FeatureChild {
-  scenario: Scenario;
-  background: Background;
-  rule: Rule;
+  type: 'Background' | 'Scenario' | 'ScenarioOutline';
+  location: Location;
+  steps: Step[];
 }
 export interface Rule {
   children: RuleChild[];
@@ -42,16 +42,21 @@ export interface Location {
 export interface Step {
   id: string;
   location: Location;
+  text: string;
+  keyword: 'Given ' | 'When ' | 'Then ' | 'And ' | 'But ';
 }
 
 export interface Pickle {
   steps: PickleStep[];
   uri: string;
+  name: string;
+  language: string;
 }
 export interface PickleStep {
   id: string;
   astNodeIds: readonly string[];
   text: string;
+  locations: readonly Location[];
 }
 export interface IUsageMatch {
   duration?: Duration;
@@ -105,12 +110,16 @@ export interface TestStepResult {
 }
 export interface TestCase {
   id: string;
-  testSteps: TestStep[];
+  sourceLocation: SourceLocation;
+  steps: TestStep[];
+}
+export interface SourceLocation {
+  uri: string;
+  line: number;
 }
 export interface TestStep {
-  id: string;
-  stepDefinitionIds: readonly string[];
-  pickleStepId: string;
+  sourceLocation: SourceLocation;
+  actionLocation: SourceLocation;
 }
 export interface EventDataCollector {
   getTestCaseAttempts: () => ITestCaseAttempt[];

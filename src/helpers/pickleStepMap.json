@@ -1,0 +1,50 @@
+{
+  "8": {
+    "text": "I have a simple maths calculator",
+    "arguments": [],
+    "locations": [{ "line": 8, "column": 9 }],
+    "id": "8"
+  },
+  "11": {
+    "text": "a variable is set to 11",
+    "arguments": [],
+    "locations": [{ "line": 11, "column": 9 }],
+    "id": "11"
+  },
+  "12": {
+    "text": "I increment this variable by 1",
+    "arguments": [],
+    "locations": [{ "line": 12, "column": 8 }],
+    "id": "12"
+  },
+  "13": {
+    "text": "the variable should contain 12",
+    "arguments": [],
+    "locations": [{ "line": 13, "column": 8 }],
+    "id": "13"
+  },
+  "14": {
+    "text": "I increment this variable by 2",
+    "arguments": [],
+    "locations": [{ "line": 14, "column": 8 }],
+    "id": "14"
+  },
+  "15": {
+    "text": "the variable should contain 14",
+    "arguments": [],
+    "locations": [{ "line": 15, "column": 8 }],
+    "id": "15"
+  },
+  "16": {
+    "text": "I increment this variable by 2",
+    "arguments": [],
+    "locations": [{ "line": 16, "column": 8 }],
+    "id": "16"
+  },
+  "17": {
+    "text": "the variable should contain 16",
+    "arguments": [],
+    "locations": [{ "line": 17, "column": 8 }],
+    "id": "17"
+  }
+}

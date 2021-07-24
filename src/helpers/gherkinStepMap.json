@@ -1,0 +1,86 @@
+{
+  "8": {
+    "type": "Step",
+    "location": { "line": 8, "column": 3 },
+    "keyword": "Given ",
+    "text": "I have a simple maths calculator",
+    "id": "8"
+  },
+  "11": {
+    "type": "Step",
+    "location": { "line": 11, "column": 3 },
+    "keyword": "Given ",
+    "text": "a variable is set to 11",
+    "id": "11"
+  },
+  "12": {
+    "type": "Step",
+    "location": { "line": 12, "column": 3 },
+    "keyword": "When ",
+    "text": "I increment this variable by 1",
+    "id": "12"
+  },
+  "13": {
+    "type": "Step",
+    "location": { "line": 13, "column": 3 },
+    "keyword": "Then ",
+    "text": "the variable should contain 12",
+    "id": "13"
+  },
+  "14": {
+    "type": "Step",
+    "location": { "line": 14, "column": 3 },
+    "keyword": "When ",
+    "text": "I increment this variable by 2",
+    "id": "14"
+  },
+  "15": {
+    "type": "Step",
+    "location": { "line": 15, "column": 3 },
+    "keyword": "Then ",
+    "text": "the variable should contain 14",
+    "id": "15"
+  },
+  "16": {
+    "type": "Step",
+    "location": { "line": 16, "column": 3 },
+    "keyword": "When ",
+    "text": "I increment this variable by 2",
+    "id": "16"
+  },
+  "17": {
+    "type": "Step",
+    "location": { "line": 17, "column": 3 },
+    "keyword": "Then ",
+    "text": "the variable should contain 16",
+    "id": "17"
+  },
+  "20": {
+    "type": "Step",
+    "location": { "line": 20, "column": 3 },
+    "keyword": "Given ",
+    "text": "a variable is set to <var>",
+    "id": "20"
+  },
+  "21": {
+    "type": "Step",
+    "location": { "line": 21, "column": 3 },
+    "keyword": "When ",
+    "text": "I increment this variable by <increment>",
+    "id": "21"
+  },
+  "22": {
+    "type": "Step",
+    "location": { "line": 22, "column": 3 },
+    "keyword": "When ",
+    "text": "I increment this variable by 2",
+    "id": "22"
+  },
+  "23": {
+    "type": "Step",
+    "location": { "line": 23, "column": 3 },
+    "keyword": "Then ",
+    "text": "the variable should contain <result>",
+    "id": "23"
+  }
+}

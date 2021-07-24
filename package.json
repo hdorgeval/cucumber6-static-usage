@@ -1,6 +1,6 @@
 {
   "name": "cucumber6-usage-formatter",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Custom usage formatter for cucumber-js v6",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

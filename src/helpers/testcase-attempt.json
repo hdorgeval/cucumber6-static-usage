@@ -1,0 +1,308 @@
+{
+  "gherkinDocument": {
+    "type": "GherkinDocument",
+    "feature": {
+      "type": "Feature",
+      "tags": [{ "type": "Tag", "location": { "line": 1, "column": 1 }, "name": "@foo" }],
+      "location": { "line": 2, "column": 1 },
+      "language": "en",
+      "keyword": "Feature",
+      "name": "Simple maths",
+      "description": "  In order to do maths\\n  As a developer\\n  I want to increment variables",
+      "children": [
+        {
+          "type": "Background",
+          "location": { "line": 7, "column": 1 },
+          "keyword": "Background",
+          "name": "Calculator",
+          "steps": [
+            {
+              "type": "Step",
+              "location": { "line": 8, "column": 3 },
+              "keyword": "Given ",
+              "text": "I have a simple maths calculator",
+              "id": "8"
+            }
+          ]
+        },
+        {
+          "type": "Scenario",
+          "tags": [],
+          "location": { "line": 10, "column": 1 },
+          "keyword": "Scenario",
+          "name": "easy maths",
+          "steps": [
+            {
+              "type": "Step",
+              "location": { "line": 11, "column": 3 },
+              "keyword": "Given ",
+              "text": "a variable is set to 11",
+              "id": "11"
+            },
+            {
+              "type": "Step",
+              "location": { "line": 12, "column": 3 },
+              "keyword": "When ",
+              "text": "I increment this variable by 1",
+              "id": "12"
+            },
+            {
+              "type": "Step",
+              "location": { "line": 13, "column": 3 },
+              "keyword": "Then ",
+              "text": "the variable should contain 12",
+              "id": "13"
+            },
+            {
+              "type": "Step",
+              "location": { "line": 14, "column": 3 },
+              "keyword": "When ",
+              "text": "I increment this variable by 2",
+              "id": "14"
+            },
+            {
+              "type": "Step",
+              "location": { "line": 15, "column": 3 },
+              "keyword": "Then ",
+              "text": "the variable should contain 14",
+              "id": "15"
+            },
+            {
+              "type": "Step",
+              "location": { "line": 16, "column": 3 },
+              "keyword": "When ",
+              "text": "I increment this variable by 2",
+              "id": "16"
+            },
+            {
+              "type": "Step",
+              "location": { "line": 17, "column": 3 },
+              "keyword": "Then ",
+              "text": "the variable should contain 16",
+              "id": "17"
+            }
+          ]
+        },
+        {
+          "type": "ScenarioOutline",
+          "tags": [],
+          "location": { "line": 19, "column": 1 },
+          "keyword": "Scenario Outline",
+          "name": "much more complex stuff",
+          "steps": [
+            {
+              "type": "Step",
+              "location": { "line": 20, "column": 3 },
+              "keyword": "Given ",
+              "text": "a variable is set to <var>",
+              "id": "20"
+            },
+            {
+              "type": "Step",
+              "location": { "line": 21, "column": 3 },
+              "keyword": "When ",
+              "text": "I increment this variable by <increment>",
+              "id": "21"
+            },
+            {
+              "type": "Step",
+              "location": { "line": 22, "column": 3 },
+              "keyword": "When ",
+              "text": "I increment this variable by 2",
+              "id": "22"
+            },
+            {
+              "type": "Step",
+              "location": { "line": 23, "column": 3 },
+              "keyword": "Then ",
+              "text": "the variable should contain <result>",
+              "id": "23"
+            }
+          ],
+          "examples": [
+            {
+              "type": "Examples",
+              "tags": [],
+              "location": { "line": 24, "column": 3 },
+              "keyword": "Examples",
+              "name": "",
+              "tableHeader": {
+                "type": "TableRow",
+                "location": { "line": 25, "column": 5 },
+                "cells": [
+                  { "type": "TableCell", "location": { "line": 25, "column": 7 }, "value": "var" },
+                  {
+                    "type": "TableCell",
+                    "location": { "line": 25, "column": 13 },
+                    "value": "increment"
+                  },
+                  {
+                    "type": "TableCell",
+                    "location": { "line": 25, "column": 25 },
+                    "value": "result"
+                  }
+                ]
+              },
+              "tableBody": [
+                {
+                  "type": "TableRow",
+                  "location": { "line": 26, "column": 5 },
+                  "cells": [
+                    {
+                      "type": "TableCell",
+                      "location": { "line": 26, "column": 7 },
+                      "value": "100"
+                    },
+                    { "type": "TableCell", "location": { "line": 26, "column": 13 }, "value": "5" },
+                    {
+                      "type": "TableCell",
+                      "location": { "line": 26, "column": 25 },
+                      "value": "105"
+                    }
+                  ]
+                },
+                {
+                  "type": "TableRow",
+                  "location": { "line": 27, "column": 5 },
+                  "cells": [
+                    { "type": "TableCell", "location": { "line": 27, "column": 7 }, "value": "99" },
+                    {
+                      "type": "TableCell",
+                      "location": { "line": 27, "column": 13 },
+                      "value": "1234"
+                    },
+                    {
+                      "type": "TableCell",
+                      "location": { "line": 27, "column": 25 },
+                      "value": "1333"
+                    }
+                  ]
+                },
+                {
+                  "type": "TableRow",
+                  "location": { "line": 28, "column": 5 },
+                  "cells": [
+                    { "type": "TableCell", "location": { "line": 28, "column": 7 }, "value": "12" },
+                    { "type": "TableCell", "location": { "line": 28, "column": 13 }, "value": "5" },
+                    { "type": "TableCell", "location": { "line": 28, "column": 25 }, "value": "17" }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "comments": [],
+    "uri": "features/simple-maths.feature"
+  },
+  "pickle": {
+    "tags": [{ "name": "@foo", "location": { "line": 1, "column": 1 } }],
+    "name": "easy maths",
+    "language": "en",
+    "locations": [{ "line": 10, "column": 1 }],
+    "steps": [
+      {
+        "text": "I have a simple maths calculator",
+        "arguments": [],
+        "locations": [{ "line": 8, "column": 9 }],
+        "id": "8"
+      },
+      {
+        "text": "a variable is set to 11",
+        "arguments": [],
+        "locations": [{ "line": 11, "column": 9 }],
+        "id": "11"
+      },
+      {
+        "text": "I increment this variable by 1",
+        "arguments": [],
+        "locations": [{ "line": 12, "column": 8 }],
+        "id": "12"
+      },
+      {
+        "text": "the variable should contain 12",
+        "arguments": [],
+        "locations": [{ "line": 13, "column": 8 }],
+        "id": "13"
+      },
+      {
+        "text": "I increment this variable by 2",
+        "arguments": [],
+        "locations": [{ "line": 14, "column": 8 }],
+        "id": "14"
+      },
+      {
+        "text": "the variable should contain 14",
+        "arguments": [],
+        "locations": [{ "line": 15, "column": 8 }],
+        "id": "15"
+      },
+      {
+        "text": "I increment this variable by 2",
+        "arguments": [],
+        "locations": [{ "line": 16, "column": 8 }],
+        "id": "16"
+      },
+      {
+        "text": "the variable should contain 16",
+        "arguments": [],
+        "locations": [{ "line": 17, "column": 8 }],
+        "id": "17"
+      }
+    ],
+    "uri": "features/simple-maths.feature"
+  },
+  "testCase": {
+    "sourceLocation": { "uri": "features/simple-maths.feature", "line": 10 },
+    "steps": [
+      { "actionLocation": { "uri": "step-definitions/maths/simple-maths-steps.ts", "line": 24 } },
+      {
+        "sourceLocation": { "uri": "features/simple-maths.feature", "line": 8 },
+        "actionLocation": { "uri": "step-definitions/maths/simple-maths-steps.ts", "line": 5 }
+      },
+      {
+        "sourceLocation": { "uri": "features/simple-maths.feature", "line": 11 },
+        "actionLocation": { "uri": "step-definitions/maths/simple-maths-steps.ts", "line": 9 }
+      },
+      {
+        "sourceLocation": { "uri": "features/simple-maths.feature", "line": 12 },
+        "actionLocation": { "uri": "step-definitions/maths/simple-maths-steps.ts", "line": 13 }
+      },
+      {
+        "sourceLocation": { "uri": "features/simple-maths.feature", "line": 13 },
+        "actionLocation": { "uri": "step-definitions/maths/simple-maths-steps.ts", "line": 17 }
+      },
+      {
+        "sourceLocation": { "uri": "features/simple-maths.feature", "line": 14 },
+        "actionLocation": { "uri": "step-definitions/maths/simple-maths-steps.ts", "line": 13 }
+      },
+      {
+        "sourceLocation": { "uri": "features/simple-maths.feature", "line": 15 },
+        "actionLocation": { "uri": "step-definitions/maths/simple-maths-steps.ts", "line": 17 }
+      },
+      {
+        "sourceLocation": { "uri": "features/simple-maths.feature", "line": 16 },
+        "actionLocation": { "uri": "step-definitions/maths/simple-maths-steps.ts", "line": 13 }
+      },
+      {
+        "sourceLocation": { "uri": "features/simple-maths.feature", "line": 17 },
+        "actionLocation": { "uri": "step-definitions/maths/simple-maths-steps.ts", "line": 17 }
+      }
+    ]
+  },
+  "attemptNumber": 1,
+  "result": { "duration": 0, "status": "skipped" },
+  "stepAttachments": [[], [], [], [], [], [], [], [], []],
+  "stepResults": [
+    { "status": "skipped" },
+    { "status": "skipped" },
+    { "status": "skipped" },
+    { "status": "skipped" },
+    { "status": "skipped" },
+    { "status": "skipped" },
+    { "status": "skipped" },
+    { "status": "skipped" },
+    { "status": "skipped" }
+  ]
+}
