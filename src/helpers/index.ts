@@ -6,8 +6,6 @@ import {
   IUsageMatch,
   MILLISECONDS_PER_SECOND,
   NANOSECONDS_PER_MILLISECOND,
-  Pickle,
-  PickleStep,
   Step,
   StepDefinition,
 } from './types';
@@ -37,14 +35,14 @@ function buildEmptyMapping(stepDefinitions: StepDefinition[]): Record<string, IU
   return mapping;
 }
 
-function getPickleStepMap(pickle: Pickle): Record<string, PickleStep> {
-  const result: Record<string, PickleStep> = {};
-  pickle.steps.forEach((pickleStep) => {
-    pickleStep.id = pickleStep.id || pickleStep.locations[0].line.toString();
-    result[pickleStep.id] = pickleStep;
-  });
-  return result;
-}
+// function getPickleStepMap(pickle: Pickle): Record<string, PickleStep> {
+//   const result: Record<string, PickleStep> = {};
+//   pickle.steps.forEach((pickleStep) => {
+//     pickleStep.id = pickleStep.id || pickleStep.locations[0].line.toString();
+//     result[pickleStep.id] = pickleStep;
+//   });
+//   return result;
+// }
 
 function getGherkinStepMap(gherkinDocument: GherkinDocument): Record<string, Step> {
   const result: Record<string, Step> = {};

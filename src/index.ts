@@ -23,7 +23,7 @@ class CustomUsageFormatter extends Formatter {
       return;
     }
     const table = new Table({
-      head: ['Pattern / Text', 'Duration', 'Location'],
+      head: ['Pattern / Text', 'Usage', 'Location'],
       style: {
         border: [],
         head: [],
@@ -48,7 +48,7 @@ class CustomUsageFormatter extends Formatter {
         col2.push('UNUSED');
       }
       const col3 = [formatLocation({ line, uri })];
-      matches.slice(0, 5).forEach((match) => {
+      matches.forEach((match) => {
         col1.push(`  ${match.text}`);
         if (doesHaveValue(match.duration)) {
           col2.push(
@@ -59,9 +59,7 @@ class CustomUsageFormatter extends Formatter {
         }
         col3.push(formatLocation(match));
       });
-      if (matches.length > 5) {
-        col1.push(`  ${(matches.length - 5).toString()} more`);
-      }
+
       table.push([col1.join('\n'), col2.join('\n'), col3.join('\n')]);
     });
     this.log(`${table.toString()}\n`);
