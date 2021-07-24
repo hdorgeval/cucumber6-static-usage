@@ -3,7 +3,7 @@
 Static steps usage reporter for cucumber-js v6.
 
 This reporter is inspired by the built-in `usage` reporter without limiting the matches to the first five:
-this reporter give you the usage for all steps without any limitation, so the generated report might be huge.
+this reporter gives you the usage for all steps without any limitation, so the generated report might be huge.
 
 ## To install this steps usage reporter
 
