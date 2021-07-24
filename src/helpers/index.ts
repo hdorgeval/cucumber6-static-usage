@@ -64,6 +64,14 @@ function isNewMatch(match: IUsageMatch, matches: IUsageMatch[]): boolean {
   );
 }
 
+function orderMatchesByUriAndLine(matches: IUsageMatch[]): IUsageMatch[] {
+  return matches.sort((a, b) => {
+    if (a.uri === b.uri) {
+      return a.line - b.line;
+    }
+    return a.uri < b.uri ? -1 : 1;
+  });
+}
 function buildMapping({
   stepDefinitions,
   eventDataCollector,
@@ -84,6 +92,7 @@ function buildMapping({
 
         if (mapping[stepDefinitionId] && isNewMatch(match, mapping[stepDefinitionId].matches)) {
           mapping[stepDefinitionId].matches.push(match);
+          orderMatchesByUriAndLine(mapping[stepDefinitionId].matches);
         }
       });
   });
