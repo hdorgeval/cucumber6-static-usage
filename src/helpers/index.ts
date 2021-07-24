@@ -54,6 +54,16 @@ function getGherkinStepMap(gherkinDocument: GherkinDocument): Record<string, Ste
   return result;
 }
 
+function isNewMatch(match: IUsageMatch, matches: IUsageMatch[]): boolean {
+  if (matches.length === 0) {
+    return true;
+  }
+
+  return !matches.some(
+    (m) => m.text === match.text && m.line === match.line && m.uri === match.uri,
+  );
+}
+
 function buildMapping({
   stepDefinitions,
   eventDataCollector,
@@ -72,7 +82,7 @@ function buildMapping({
           uri: testStep.sourceLocation.uri,
         };
 
-        if (doesHaveValue(mapping[stepDefinitionId])) {
+        if (mapping[stepDefinitionId] && isNewMatch(match, mapping[stepDefinitionId].matches)) {
           mapping[stepDefinitionId].matches.push(match);
         }
       });
