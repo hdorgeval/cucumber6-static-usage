@@ -35,15 +35,6 @@ function buildEmptyMapping(stepDefinitions: StepDefinition[]): Record<string, IU
   return mapping;
 }
 
-// function getPickleStepMap(pickle: Pickle): Record<string, PickleStep> {
-//   const result: Record<string, PickleStep> = {};
-//   pickle.steps.forEach((pickleStep) => {
-//     pickleStep.id = pickleStep.id || pickleStep.locations[0].line.toString();
-//     result[pickleStep.id] = pickleStep;
-//   });
-//   return result;
-// }
-
 function getGherkinStepMap(gherkinDocument: GherkinDocument): Record<string, Step> {
   const result: Record<string, Step> = {};
   gherkinDocument.feature.children
@@ -69,13 +60,11 @@ function buildMapping({
 }: IGetUsageRequest): Record<string, IUsage> {
   const mapping = buildEmptyMapping(stepDefinitions);
   eventDataCollector.getTestCaseAttempts().forEach((testCaseAttempt) => {
-    // const pickleStepMap = getPickleStepMap(testCaseAttempt.pickle);
     const gherkinStepMap = getGherkinStepMap(testCaseAttempt.gherkinDocument);
     testCaseAttempt.testCase.steps
       .filter((step) => step.actionLocation && step.sourceLocation)
       .forEach((testStep) => {
         const stepDefinitionId = `${testStep.actionLocation.uri}:${testStep.actionLocation.line}`;
-        // const pickleStep = pickleStepMap[stepDefinitionId];
         const gherkinStep = gherkinStepMap[testStep.sourceLocation.line.toString()];
         const match: IUsageMatch = {
           line: gherkinStep.location.line,
