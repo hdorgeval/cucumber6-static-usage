@@ -13,23 +13,43 @@ class CustomUsageFormatter extends Formatter {
   }
 
   logUsage(): void {
-    const usage = getUsage({
+    const usages = getUsage({
       cwd: this.cwd,
       stepDefinitions: this.supportCodeLibrary.stepDefinitions,
       eventDataCollector: this.eventDataCollector,
     });
-    if (usage.length === 0) {
+    if (usages.length === 0) {
       this.log('No step definitions');
       return;
     }
+    const allPatternsLength = usages.map((usage) => usage.pattern.length).map((n) => n + 2);
+    const patternMaxLength = Math.max(...allPatternsLength);
+
+    const allMatchesLength = usages
+      .map((usage) => usage.matches)
+      .flat()
+      .map((m) => m.text?.length || 0)
+      .map((n) => n + 4);
+
+    const maxLength = Math.max(...allMatchesLength, patternMaxLength);
+
+    const bestFirstColWidth =
+      maxLength > 100
+        ? Math.floor((allMatchesLength.reduce((a, b) => a + b, 0) / allMatchesLength.length) * 1.4)
+        : maxLength;
+
+    const firstColWidth = Number(
+      process.env['STEPS_USAGE_REPORT_FIRST_COL_WIDTH'] || Math.min(100, bestFirstColWidth),
+    );
     const table = new Table({
       head: ['Pattern / Text', 'Usage', 'Location'],
+      colWidths: [firstColWidth, null, null],
       style: {
         border: [],
         head: [],
       },
     });
-    usage.forEach(({ line, matches, meanDuration, pattern, patternType, uri }) => {
+    usages.forEach(({ line, matches, meanDuration, pattern, patternType, uri }) => {
       let formattedPattern = pattern;
       if (patternType === 'RegularExpression') {
         formattedPattern = '/' + formattedPattern + '/';
