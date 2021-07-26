@@ -93,3 +93,13 @@ Scenario Outline: much more complex stuff
 └────────────────────────────────────────────┴────────┴─────────────────────────────────────────────────┘
 
 ```
+
+## Control the size of the first column of the generated report
+
+The reporter tries to infer a 'best' width for the first column of the report.
+
+In some cases this value may not fit your needs; you can control the width of the first column by setting the environment variable `STEPS_USAGE_REPORT_FIRST_COL_WIDTH`:
+
+```js
+process.env['STEPS_USAGE_REPORT_FIRST_COL_WIDTH'] = 150;
+```
