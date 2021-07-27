@@ -33,13 +33,33 @@ class CustomUsageFormatter extends Formatter {
 
     const maxLength = Math.max(...allMatchesLength, patternMaxLength);
 
-    const bestFirstColWidth =
+    const guessWidth =
       maxLength > 100
         ? Math.floor((allMatchesLength.reduce((a, b) => a + b, 0) / allMatchesLength.length) * 1.4)
         : maxLength;
 
+    let bestWidth = guessWidth;
+    let loopCounter = 0;
+    const maxLoopCounter = 100;
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+      if (bestWidth > 100) {
+        break;
+      }
+      if (loopCounter > maxLoopCounter) {
+        break;
+      }
+      loopCounter += 1;
+      bestWidth += 2;
+      const percentage =
+        allMatchesLength.filter((n) => n <= bestWidth).length / allMatchesLength.length;
+      if (percentage > 0.8) {
+        break;
+      }
+    }
+
     const firstColWidth = Number(
-      process.env['STEPS_USAGE_REPORT_FIRST_COL_WIDTH'] || Math.min(100, bestFirstColWidth),
+      process.env['STEPS_USAGE_REPORT_FIRST_COL_WIDTH'] || Math.min(100, bestWidth),
     );
     const table = new Table({
       head: ['Pattern / Text', 'Usage', 'Location'],
